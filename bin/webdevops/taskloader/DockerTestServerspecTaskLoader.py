@@ -65,8 +65,8 @@ class DockerTestServerspecTaskLoader(BaseDockerTaskLoader):
         # check if dockerfile is symlink, skipping tests if just a duplicate image
         # image is using the same hashes
         if dockerfile['image']['duplicate']:
-            print '  Docker image %s is build from symlink and duplicate of %s' % (dockerfile['image']['fullname'], dockerfile['image']['from'])
-            print '  -> skipping tests'
+            print('  Docker image %s is build from symlink and duplicate of %s' % (dockerfile['image']['fullname'], dockerfile['image']['from']))
+            print('  -> skipping tests')
             BaseTaskLoader.set_task_status(task, 'skipped (symlink)', 'skipped')
             return True
 
@@ -107,24 +107,24 @@ class DockerTestServerspecTaskLoader(BaseDockerTaskLoader):
         # DryRun
         if configuration.get('dryRun'):
             if not os.path.isfile(spec_abs_path):
-                print '                no tests found'
+                print('                no tests found')
 
-            print '         image: %s' % (dockerfile['image']['fullname'])
-            print '          path: %s' % (spec_path)
-            print '          args: %s' % (' '.join(serverspec_opts))
-            print ''
-            print 'spec configuration:'
-            print '-------------------'
-            print json.dumps(serverspec_conf, indent=4, sort_keys=True)
-            print ''
-            print 'Dockerfile:'
-            print '-----------'
-            print dockerfile_content
+            print('         image: %s' % (dockerfile['image']['fullname']))
+            print('          path: %s' % (spec_path))
+            print('          args: %s' % (' '.join(serverspec_opts)))
+            print('')
+            print('spec configuration:')
+            print('-------------------')
+            print(json.dumps(serverspec_conf, indent=4, sort_keys=True))
+            print('')
+            print('Dockerfile:')
+            print('-----------')
+            print(dockerfile_content)
             return True
 
         # check if we have any tests
         if not os.path.isfile(spec_abs_path):
-            print '         no tests defined (%s)' % (spec_path)
+            print('         no tests defined (%s)' % (spec_path))
             BaseTaskLoader.set_task_status(task, 'skipped (no test)', 'skipped')
             return True
 
@@ -144,15 +144,15 @@ class DockerTestServerspecTaskLoader(BaseDockerTaskLoader):
             try:
                 test_status = Command.execute(cmd, cwd=configuration.get('serverspecPath'))
             except Exception as e:
-                print e
+                print(e)
                 pass
 
             if test_status:
                 break
             elif retry_count < (configuration.get('retry') - 1):
-                print '    failed, retrying... (try %s)' % (retry_count + 1)
+                print('    failed, retrying... (try %s)' % (retry_count + 1))
             else:
-                print '    failed, giving up'
+                print('    failed, giving up')
 
         return test_status
 

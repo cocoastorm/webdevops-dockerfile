@@ -23,5 +23,4 @@ simplejson
 backpack
 PyYAML
 cloudpickle
-pyinotify
 configparser

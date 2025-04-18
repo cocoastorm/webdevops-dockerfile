@@ -56,7 +56,7 @@ class DockerPullTaskLoader(BaseDockerTaskLoader):
         Pull one Docker image from registry
         """
         if configuration.get('dryRun'):
-            print '      pull: %s' % (dockerfile['image']['fullname'])
+            print('      pull: %s' % (dockerfile['image']['fullname']))
             return True
 
         pull_status = False
@@ -69,9 +69,9 @@ class DockerPullTaskLoader(BaseDockerTaskLoader):
             if pull_status:
                 break
             elif retry_count < (configuration.get('retry') - 1):
-                print '    failed, retrying... (try %s)' % (retry_count+1)
+                print('    failed, retrying... (try %s)' % (retry_count+1))
             else:
-                print '    failed, giving up'
+                print('    failed, giving up')
 
         return pull_status
 
