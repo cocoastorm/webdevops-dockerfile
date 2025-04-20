@@ -14,10 +14,10 @@
 {% import 'Dockerfile/images/ssh.jinja2'                as ssh %}
 {% import 'Dockerfile/images/vsftp.jinja2'              as vsftp %}
 
-#+++++++++++++++++++++++++++++++++++++++
+#syntax=docker/dockerfile:1
+
 # Dockerfile for webdevops/{{ Dockerfile.image }}:{{ Dockerfile.tag }}
 #    -- automatically generated  --
-#+++++++++++++++++++++++++++++++++++++++
 
 {% block content %}
 

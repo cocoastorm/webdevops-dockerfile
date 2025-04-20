@@ -1,6 +1,6 @@
-{% macro goreplace(path="/usr/local/bin", version="22.10.0") -%}
+{% macro goreplace(path="/usr/local/bin", arch="amd64", version="22.10.0") -%}
     ## Install go-replace
-    && wget -O "{{ path }}/go-replace" "https://github.com/webdevops/go-replace/releases/download/{{ version }}/go-replace.linux.amd64" \
+    && wget -O "{{ path }}/go-replace" "https://github.com/webdevops/go-replace/releases/download/{{ version }}/go-replace.linux.{{ arch }}" \
     && chmod +x "{{ path }}/go-replace" \
     && "{{ path }}/go-replace" --version
 {%- endmacro %}

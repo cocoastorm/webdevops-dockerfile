@@ -1,5 +1,8 @@
 {{ docker.fromOfficial("alpine") }}
 
+ARG GOREPLACE_ARCH=${TARGETARCH}
+ARG GOSU_ARCH=${TARGETARCH}
+
 RUN apk add --no-cache \
         ca-certificates \
         openssl \
@@ -18,11 +21,11 @@ RUN apk add --no-cache \
         git \
         gnupg \
     && mkdir -p \
-            /baselayout/sbin \
-            /baselayout/usr/local/bin \
+        /baselayout/sbin \
+        /baselayout/usr/local/bin \
         # Baselayout scripts
         && wget -O /tmp/baselayout-install.sh https://raw.githubusercontent.com/webdevops/Docker-Image-Baselayout/master/install.sh \
         && sh /tmp/baselayout-install.sh /baselayout \
-        {{ tools.goreplace(path="/baselayout/usr/local/bin") }} \
+        {{ tools.goreplace(path="/baselayout/usr/local/bin", arch="${GOREPLACE_ARCH}") }} \
         && ln -s /baselayout/usr/local/bin/go-replace /usr/local/bin/ \
-        {{ tools.gosu(path="/baselayout/sbin") }}
+        {{ tools.gosu(path="/baselayout/sbin", arch="${GOSU_ARCH}") }}
