@@ -21,10 +21,9 @@
 import os
 import yaml
 import yamlordereddictloader
-import time
 import queue
 import shutil
-import grp
+import sys
 from cleo import Output
 from webdevops import Provisioner
 from webdevops.command import BaseCommand
@@ -98,14 +97,22 @@ class GenerateProvisionCommand(BaseCommand):
                 self.line('<info>* </info> Building localscipts')
             base_path = self.configuration.get('baselayoutPath')
 
-            root_group = grp.getgrgid(0)
+            group = None
+
+            if sys.platform == "linux" or sys.platform == "darwin":
+                try:
+                    import grp
+                    root_group = grp.getgrgid(0)
+                    group = root_group.gr_name
+                except ImportError:
+                    print("failed to import grp")
 
             shutil.make_archive(
                 base_name='baselayout',
                 format='bztar',
                 root_dir=base_path,
                 owner='root',
-                group=root_group.gr_name
+                group=group
             )
             os.rename('baselayout.tar.bz2', 'baselayout.tar')
 
