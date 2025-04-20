@@ -34,7 +34,6 @@ RUN apk add --no-cache \
         ## Install go-replace
     && wget -O "/baselayout/usr/local/bin/go-replace" "https://github.com/webdevops/go-replace/releases/download/22.10.0/go-replace.linux.${GOREPLACE_ARCH}" \
     && chmod +x "/baselayout/usr/local/bin/go-replace" \
-    && "/baselayout/usr/local/bin/go-replace" --version \
         && ln -s /baselayout/usr/local/bin/go-replace /usr/local/bin/ \
         # Install gosu
     && wget -O "/baselayout/sbin/gosu" "https://github.com/tianon/gosu/releases/download/1.10/gosu-${GOSU_ARCH}" \
