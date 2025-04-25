@@ -1,5 +1,6 @@
 {{ docker.fromOfficial("alpine") }}
 
+ARG TARGETARCH
 ARG GOREPLACE_ARCH=${TARGETARCH}
 ARG GOSU_ARCH=${TARGETARCH}
 
