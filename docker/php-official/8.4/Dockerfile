@@ -1,7 +1,7 @@
-#+++++++++++++++++++++++++++++++++++++++
+#syntax=docker/dockerfile:1
+
 # Dockerfile for webdevops/php-official:8.4
 #    -- automatically generated  --
-#+++++++++++++++++++++++++++++++++++++++
 
 
 FROM php:8.4-fpm-bookworm
@@ -143,7 +143,7 @@ RUN set -x \
     && git clone --branch latest --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
     && cd /usr/src/php/ext/amqp && git submodule update --init \
     && git clone --branch master --depth 1 https://github.com/Imagick/imagick.git /usr/src/php/ext/imagick \
-    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \    
+    && docker-php-ext-configure ldap \    
     && docker-php-ext-install \
         bcmath \
         amqp \

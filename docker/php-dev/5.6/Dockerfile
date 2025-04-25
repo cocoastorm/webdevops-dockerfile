@@ -1,7 +1,7 @@
-#+++++++++++++++++++++++++++++++++++++++
+#syntax=docker/dockerfile:1
+
 # Dockerfile for webdevops/php-dev:5.6
 #    -- automatically generated  --
-#+++++++++++++++++++++++++++++++++++++++
 
 FROM webdevops/php:5.6
 

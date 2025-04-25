@@ -1,7 +1,7 @@
-#+++++++++++++++++++++++++++++++++++++++
+#syntax=docker/dockerfile:1
+
 # Dockerfile for webdevops/php-official:8.2-alpine
 #    -- automatically generated  --
-#+++++++++++++++++++++++++++++++++++++++
 
 
 FROM php:8.2-fpm-alpine
